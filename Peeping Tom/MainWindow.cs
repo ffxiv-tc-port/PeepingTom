@@ -187,7 +187,10 @@ internal class MainWindow : Window {
                 if (Plugin.Config.OpenExamine && ImGui.GetIO().KeyAlt) {
                     if (obj != null) {
                         unsafe {
-                            AgentInspect.Instance()->ExamineCharacter(obj.EntityId);
+                            var inspect = AgentInspect.Instance();
+                            if (inspect != null) {
+                                inspect->ExamineCharacter(obj.EntityId);
+                            }
                         }
                     } else {
                         var error = string.Format(Language.ExamineErrorToast, targeter.Name);
