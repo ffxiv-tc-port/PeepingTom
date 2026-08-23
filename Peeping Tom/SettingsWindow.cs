@@ -208,6 +208,22 @@ public class SettingsWindow : Window {
             ImGui.EndTabItem();
         }
 
+        if (ImGui.BeginTabItem($"{Language.SettingsChatTab}###chat-tab")) {
+            var logToChat = Plugin.Config.LogToChat;
+            if (ImGui.Checkbox(Language.SettingsChatLogEnabled, ref logToChat)) {
+                Plugin.Config.LogToChat = logToChat;
+                Plugin.Config.Save();
+            }
+
+            var logToChatWhenClosed = Plugin.Config.LogToChatWhenClosed;
+            if (ImGui.Checkbox(Language.SettingsChatLogWhenClosed, ref logToChatWhenClosed)) {
+                Plugin.Config.LogToChatWhenClosed = logToChatWhenClosed;
+                Plugin.Config.Save();
+            }
+
+            ImGui.EndTabItem();
+        }
+
         if (ImGui.BeginTabItem($"{Language.SettingsWindowTab}###window-tab")) {
             var openOnLogin = Plugin.Config.OpenOnLogin;
             if (ImGui.Checkbox(Language.SettingsWindowOpenLogin, ref openOnLogin)) {

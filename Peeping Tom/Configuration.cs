@@ -43,6 +43,9 @@ namespace PeepingTom {
         public float SoundCooldown { get; set; } = 10f;
         public bool PlaySoundWhenClosed { get; set; }
 
+        public bool LogToChat { get; set; }
+        public bool LogToChatWhenClosed { get; set; } = true;
+
         public bool OpenOnLogin { get; set; }
         public bool AllowMovement { get; set; } = true;
         public bool AllowResize { get; set; } = true;

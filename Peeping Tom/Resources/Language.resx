@@ -96,6 +96,15 @@
     <data name="SettingsSoundPlayWhenClosed" xml:space="preserve">
         <value>Play sound when window is closed</value>
     </data>
+    <data name="SettingsChatTab" xml:space="preserve">
+        <value>Chat</value>
+    </data>
+    <data name="SettingsChatLogEnabled" xml:space="preserve">
+        <value>Log to chat when someone targets you</value>
+    </data>
+    <data name="SettingsChatLogWhenClosed" xml:space="preserve">
+        <value>Log to chat when window is closed</value>
+    </data>
     <data name="SettingsWindowTab" xml:space="preserve">
         <value>Window</value>
     </data>
@@ -158,5 +167,8 @@
     </data>
     <data name="SoundChatError" xml:space="preserve">
         <value>Could not play sound file: {0}</value>
+    </data>
+    <data name="ChatLogTargeting" xml:space="preserve">
+        <value>{0} started targeting you.</value>
     </data>
 </root>

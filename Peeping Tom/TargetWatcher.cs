@@ -9,6 +9,8 @@ using Dalamud.Game.ClientState.Objects.Enums;
 using Dalamud.Game.ClientState.Objects.SubKinds;
 using Dalamud.Game.ClientState.Objects.Types;
 using Dalamud.Game.Text;
+using Dalamud.Game.Text.SeStringHandling;
+using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Dalamud.Plugin.Services;
 using FFXIVClientStructs.FFXIV.Client.Game.Control;
 using PeepingTom.Ipc;
@@ -64,11 +66,21 @@ namespace PeepingTom {
             // get targeters and set a copy so we can release the mutex faster
             var newCurrent = GetTargeting(Service.ObjectTable, player);
 
+            var logToChat = CanLogToChat();
+
             foreach (var newTargeter in newCurrent.Where(t => Current.All(c => c.GameObjectId != t.GameObjectId))) {
                 try {
                     Plugin.IpcManager.SendNewTargeter(newTargeter);
                 } catch (Exception ex) {
                     Service.Log.Error(ex, "Failed to send IPC message");
+                }
+
+                if (logToChat) {
+                    try {
+                        LogTargeterToChat(newTargeter);
+                    } catch (Exception ex) {
+                        Service.Log.Error(ex, "Failed to log targeter to chat");
+                    }
                 }
             }
 
@@ -152,6 +164,47 @@ namespace PeepingTom {
 
             var secs = SoundWatch.Elapsed.TotalSeconds;
             return secs >= Plugin.Config.SoundCooldown;
+        }
+
+        private bool CanLogToChat() {
+            if (!Plugin.Config.LogToChat) {
+                return false;
+            }
+
+            return Plugin.Config.LogToChatWhenClosed || Plugin.Ui.MainWindow.IsVisible;
+        }
+
+        private void LogTargeterToChat(Targeter targeter) {
+            // the name has to stay a PlayerPayload so it remains clickable, so the localised
+            // sentence is split around its {0} placeholder rather than run through string.Format
+            var format = Language.ChatLogTargeting;
+            var index = format.IndexOf("{0}", StringComparison.Ordinal);
+
+            var payloads = new List<Payload> {
+                new TextPayload($"[{Plugin.Name}] "),
+            };
+
+            if (index < 0) {
+                payloads.Add(new PlayerPayload(targeter.Name.TextValue, targeter.HomeWorldId));
+                payloads.Add(new TextPayload(" " + format));
+            } else {
+                var before = format[..index];
+                var after = format[(index + 3)..];
+
+                if (before.Length > 0) {
+                    payloads.Add(new TextPayload(before));
+                }
+
+                payloads.Add(new PlayerPayload(targeter.Name.TextValue, targeter.HomeWorldId));
+
+                if (after.Length > 0) {
+                    payloads.Add(new TextPayload(after));
+                }
+            }
+
+            Service.ChatGui.Print(new XivChatEntry {
+                Message = new SeString(payloads),
+            });
         }
 
         private void PlaySound() {
