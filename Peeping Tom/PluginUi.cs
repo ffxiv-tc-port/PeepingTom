@@ -40,7 +40,9 @@ namespace PeepingTom {
 
             if (!Plugin.Config.MarkTargeting) return;
 
-            var player = Service.ClientState.LocalPlayer;
+            // API13 把 IClientState.LocalPlayer 標為過時；ClientState.LocalPlayer 本身就是
+            // => this.objectTable.LocalPlayer 的純轉發，改用 IObjectTable 取值行為不變。
+            var player = Service.ObjectTable.LocalPlayer;
             if (player == null) return;
 
             var targeting = Plugin.Watcher.CurrentTargeters
@@ -75,7 +77,9 @@ namespace PeepingTom {
         }
 
         private IPlayerCharacter? GetCurrentTarget() {
-            var player = Service.ClientState.LocalPlayer;
+            // API13 把 IClientState.LocalPlayer 標為過時；ClientState.LocalPlayer 本身就是
+            // => this.objectTable.LocalPlayer 的純轉發，改用 IObjectTable 取值行為不變。
+            var player = Service.ObjectTable.LocalPlayer;
             if (player == null) {
                 return null;
             }
