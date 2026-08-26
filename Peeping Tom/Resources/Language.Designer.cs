@@ -60,6 +60,15 @@ namespace PeepingTom.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} started targeting you..
+        /// </summary>
+        internal static string ChatLogTargeting {
+            get {
+                return ResourceManager.GetString("ChatLogTargeting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is not close enough to examine..
         /// </summary>
         internal static string ExamineErrorToast {
@@ -137,6 +146,33 @@ namespace PeepingTom.Resources {
         internal static string SettingsBehaviourTab {
             get {
                 return ResourceManager.GetString("SettingsBehaviourTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log to chat when someone targets you.
+        /// </summary>
+        internal static string SettingsChatLogEnabled {
+            get {
+                return ResourceManager.GetString("SettingsChatLogEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log to chat when window is closed.
+        /// </summary>
+        internal static string SettingsChatLogWhenClosed {
+            get {
+                return ResourceManager.GetString("SettingsChatLogWhenClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chat.
+        /// </summary>
+        internal static string SettingsChatTab {
+            get {
+                return ResourceManager.GetString("SettingsChatTab", resourceCulture);
             }
         }
         

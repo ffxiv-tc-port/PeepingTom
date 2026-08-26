@@ -1,5 +1,5 @@
 ﻿author: Anna, Maintained by Caraxi
 name: Peeping Tom
-punchline: Shows who is currently or was previously targeting you.
-description: Shows who is currently or was previously targeting you.
-repo_url: https://github.com/Caraxi/PeepingTom
+punchline: 顯示誰正在鎖定你。
+description: 顯示目前正在鎖定你、以及先前曾鎖定你的玩家。
+repo_url: https://github.com/ffxiv-tc-port/PeepingTom

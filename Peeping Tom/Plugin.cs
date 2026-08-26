@@ -64,6 +64,7 @@ namespace PeepingTom {
         }
 
         private static void OnLanguageChange(string langCode) {
+            if (langCode == "tw") langCode = "zh-Hant"; // Dalamud TC 內部語言代碼 "tw" 撞 ISO 639-1 的 Twi 語，.NET CultureInfo/ResourceManager 不認；台服繁中對應 zh-Hant
             Language.Culture = new CultureInfo(langCode);
         }
 

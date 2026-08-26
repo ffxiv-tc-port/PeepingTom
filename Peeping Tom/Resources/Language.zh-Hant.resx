@@ -1,9 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <root>
     <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
         <xsd:element name="root" msdata:IsDataSet="true">
-            
+
         </xsd:element>
     </xsd:schema>
     <resheader name="resmimetype">
@@ -19,156 +19,156 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
     <data name="SettingsTitle" xml:space="preserve">
-        <value>{0} settings</value>
+        <value>{0} 設定</value>
     </data>
     <data name="SettingsMarkersTab" xml:space="preserve">
-        <value>Markers</value>
+        <value>標記</value>
     </data>
     <data name="SettingsMarkersMarkTarget" xml:space="preserve">
-        <value>Mark your target</value>
+        <value>標記你的目標</value>
     </data>
     <data name="SettingsMarkersMarkTargetColour" xml:space="preserve">
-        <value>Target mark colour</value>
+        <value>目標標記顏色</value>
     </data>
     <data name="SettingsMarkersMarkTargetSize" xml:space="preserve">
-        <value>Target mark size</value>
+        <value>目標標記大小</value>
     </data>
     <data name="SettingsMarkersMarkTargeting" xml:space="preserve">
-        <value>Mark targeting you</value>
+        <value>標記以你為目標的對象</value>
     </data>
     <data name="SettingsMarkersMarkTargetingColour" xml:space="preserve">
-        <value>Targeting mark colour</value>
+        <value>鎖定標記顏色</value>
     </data>
     <data name="SettingsMarkersMarkTargetingSize" xml:space="preserve">
-        <value>Targeting mark size</value>
+        <value>鎖定標記大小</value>
     </data>
     <data name="SettingsFilterTab" xml:space="preserve">
-        <value>Filters</value>
+        <value>篩選</value>
     </data>
     <data name="SettingsFilterLogParty" xml:space="preserve">
-        <value>Log party members</value>
+        <value>記錄小隊成員</value>
     </data>
     <data name="SettingsFilterLogAlliance" xml:space="preserve">
-        <value>Log alliance members</value>
+        <value>記錄小隊聯盟成員</value>
     </data>
     <data name="SettingsFilterLogCombat" xml:space="preserve">
-        <value>Log targeters engaged in combat</value>
+        <value>記錄戰鬥中鎖定你的對象</value>
     </data>
     <data name="SettingsFilterLogSelf" xml:space="preserve">
-        <value>Log yourself</value>
+        <value>記錄自己</value>
     </data>
     <data name="SettingsBehaviourTab" xml:space="preserve">
-        <value>Behaviour</value>
+        <value>行為</value>
     </data>
     <data name="SettingsBehaviourFocusHover" xml:space="preserve">
-        <value>Focus target on hover</value>
+        <value>滑鼠懸停時設為專注目標</value>
     </data>
     <data name="SettingsBehaviourExamineEnabled" xml:space="preserve">
-        <value>Open examine window on Alt-click</value>
+        <value>按住 Alt 點擊以開啟查看視窗</value>
     </data>
     <data name="SettingsSoundTab" xml:space="preserve">
-        <value>Sound</value>
+        <value>音效</value>
     </data>
     <data name="SettingsSoundEnabled" xml:space="preserve">
-        <value>Play sound when targeted</value>
+        <value>被鎖定時播放音效</value>
     </data>
     <data name="SettingsSoundPath" xml:space="preserve">
-        <value>Path to audio file</value>
+        <value>音訊檔案路徑</value>
     </data>
     <data name="SettingsSoundPathHelp" xml:space="preserve">
-        <value>Leave this blank to use a built-in sound.</value>
+        <value>留空以使用內建音效。</value>
     </data>
     <data name="SettingsSoundVolume" xml:space="preserve">
-        <value>Volume of sound</value>
+        <value>音量</value>
     </data>
     <data name="SettingsSoundDefaultDevice" xml:space="preserve">
-        <value>Default</value>
+        <value>預設</value>
     </data>
     <data name="SettingsSoundInvalidDevice" xml:space="preserve">
-        <value>Invalid device</value>
+        <value>無效的裝置</value>
     </data>
     <data name="SettingsSoundOutputDevice" xml:space="preserve">
-        <value>Output device</value>
+        <value>輸出裝置</value>
     </data>
     <data name="SettingsSoundCooldown" xml:space="preserve">
-        <value>Cooldown for sound (seconds)</value>
+        <value>音效冷卻時間（秒）</value>
     </data>
     <data name="SettingsSoundPlayWhenClosed" xml:space="preserve">
-        <value>Play sound when window is closed</value>
+        <value>視窗關閉時仍播放音效</value>
     </data>
     <data name="SettingsChatTab" xml:space="preserve">
-        <value>Chat</value>
+        <value>聊天</value>
     </data>
     <data name="SettingsChatLogEnabled" xml:space="preserve">
-        <value>Log to chat when someone targets you</value>
+        <value>有人開始以你為目標時記錄到聊天視窗</value>
     </data>
     <data name="SettingsChatLogWhenClosed" xml:space="preserve">
-        <value>Log to chat when window is closed</value>
+        <value>視窗關閉時仍記錄到聊天視窗</value>
     </data>
     <data name="SettingsWindowTab" xml:space="preserve">
-        <value>Window</value>
+        <value>視窗</value>
     </data>
     <data name="SettingsWindowOpenLogin" xml:space="preserve">
-        <value>Open on login</value>
+        <value>登入時開啟</value>
     </data>
     <data name="SettingsWindowShowConfigButton" xml:space="preserve">
-        <value>Show settings button</value>
+        <value>顯示設定按鈕</value>
     </data>
     <data name="SettingsWindowAllowCloseWithEscape" xml:space="preserve">
-        <value>Allow closing the main window with the escape key</value>
+        <value>允許以 Esc 鍵關閉主視窗</value>
     </data>
     <data name="SettingsWindowAllowMovement" xml:space="preserve">
-        <value>Allow moving the main window</value>
+        <value>允許移動主視窗</value>
     </data>
     <data name="SettingsWindowAllowResize" xml:space="preserve">
-        <value>Allow resizing the main window</value>
+        <value>允許調整主視窗大小</value>
     </data>
     <data name="SettingsWindowShowCombat" xml:space="preserve">
-        <value>Show window while in combat</value>
+        <value>戰鬥中顯示視窗</value>
     </data>
     <data name="SettingsWindowShowInstance" xml:space="preserve">
-        <value>Show window while in instance</value>
+        <value>副本中顯示視窗</value>
     </data>
     <data name="SettingsWindowShowCutscene" xml:space="preserve">
-        <value>Show window while in cutscenes</value>
+        <value>過場動畫中顯示視窗</value>
     </data>
     <data name="SettingsHistoryTab" xml:space="preserve">
-        <value>History</value>
+        <value>歷史記錄</value>
     </data>
     <data name="SettingsHistoryEnabled" xml:space="preserve">
-        <value>Show previous targeters</value>
+        <value>顯示過去鎖定過你的對象</value>
     </data>
     <data name="SettingsHistoryRecordClosed" xml:space="preserve">
-        <value>Record history when window is closed</value>
+        <value>視窗關閉時仍記錄歷史</value>
     </data>
     <data name="SettingsHistoryAmount" xml:space="preserve">
-        <value>Number of previous targeters to keep</value>
+        <value>保留的歷史鎖定對象數量</value>
     </data>
     <data name="SettingsHistoryTimestamps" xml:space="preserve">
-        <value>Show timestamps</value>
+        <value>顯示時間戳記</value>
     </data>
     <data name="SettingsAdvancedTab" xml:space="preserve">
-        <value>Advanced</value>
+        <value>進階</value>
     </data>
     <data name="SettingsAdvancedPollFrequency" xml:space="preserve">
-        <value>Poll frequency in milliseconds</value>
+        <value>輪詢頻率（毫秒）</value>
     </data>
     <data name="ExamineErrorToast" xml:space="preserve">
-        <value>{0} is not close enough to examine.</value>
+        <value>{0} 距離太遠，無法查看。</value>
     </data>
     <data name="MainTargetingYou" xml:space="preserve">
-        <value>Targeting you</value>
+        <value>以你為目標</value>
     </data>
     <data name="MainHelpExamine" xml:space="preserve">
-        <value>Click to link, Alt-click to examine, or right click to target.</value>
+        <value>點擊以連結，按住 Alt 點擊以查看，右鍵點擊以鎖定為目標。</value>
     </data>
     <data name="MainHelpNoExamine" xml:space="preserve">
-        <value>Click to link or right click to target.</value>
+        <value>點擊以連結，右鍵點擊以鎖定為目標。</value>
     </data>
     <data name="SoundChatError" xml:space="preserve">
-        <value>Could not play sound file: {0}</value>
+        <value>無法播放音效檔案：{0}</value>
     </data>
     <data name="ChatLogTargeting" xml:space="preserve">
-        <value>{0} started targeting you.</value>
+        <value>{0} 開始以你為目標</value>
     </data>
 </root>
