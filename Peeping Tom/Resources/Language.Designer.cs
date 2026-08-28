@@ -411,6 +411,15 @@ namespace PeepingTom.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Have Tataru remind you when someone targets you (requires TataruPraise).
+        /// </summary>
+        internal static string SettingsSoundTataruPraise {
+            get {
+                return ResourceManager.GetString("SettingsSoundTataruPraise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Volume of sound.
         /// </summary>
         internal static string SettingsSoundVolume {

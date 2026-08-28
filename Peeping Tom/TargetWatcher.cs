@@ -70,7 +70,14 @@ namespace PeepingTom {
 
             var logToChat = CanLogToChat();
 
+            // 這一輪有沒有「新出現的 targeter」。判定沿用下面 foreach 的同一個條件
+            // （newCurrent 裡有、Current 裡沒有的 GameObjectId），也就跟著沿用了
+            // GetTargeting 的既有過濾（隊伍／團隊／戰鬥中／自己）與 PvP 早退。
+            var anyNewTargeter = false;
+
             foreach (var newTargeter in newCurrent.Where(t => Current.All(c => c.GameObjectId != t.GameObjectId))) {
+                anyNewTargeter = true;
+
                 try {
                     Plugin.IpcManager.SendNewTargeter(newTargeter);
                 } catch (Exception ex) {
@@ -84,6 +91,13 @@ namespace PeepingTom {
                         Service.Log.Error(ex, "Failed to log targeter to chat");
                     }
                 }
+            }
+
+            // 請塔塔露念一句提醒。⚠️ 一輪只叫一次：同一輪同時冒出好幾個人也只是一句
+            // （多叫的那幾次反正會被對方的情境冷卻擋掉，但不要白跑 IPC）。
+            // 節流交給 TataruPraise 自己（「被盯著」是通知類，預設冷卻 5 秒）。
+            if (anyNewTargeter && Plugin.Config.TataruPraiseOnTarget) {
+                TataruPraiseIpc.Praise(TataruPraiseIpc.CategoryBeingWatched);
             }
 
             foreach (var stopped in Current.Where(t => newCurrent.All(c => c.GameObjectId != t.GameObjectId))) {

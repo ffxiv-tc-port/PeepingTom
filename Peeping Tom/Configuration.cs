@@ -43,6 +43,15 @@ namespace PeepingTom {
         public float SoundCooldown { get; set; } = 10f;
         public bool PlaySoundWhenClosed { get; set; }
 
+        /// <summary>
+        /// 有新的人開始把你設成目標時，透過 IPC 請 TataruPraise（塔塔露誇獎）念一句提醒。
+        /// </summary>
+        /// <remarks>
+        /// 預設開：對方沒安裝／沒載入時 IPC 只會靜默回 <c>false</c>，開著不會有任何副作用。
+        /// 舊設定檔沒有這個鍵 → 反序列化保留這裡的初始值 → 既有使用者也是開的。
+        /// </remarks>
+        public bool TataruPraiseOnTarget { get; set; } = true;
+
         public bool LogToChat { get; set; }
         public bool LogToChatWhenClosed { get; set; } = true;
 

@@ -205,6 +205,14 @@ public class SettingsWindow : Window {
                 Plugin.Config.Save();
             }
 
+            ImGui.Spacing();
+
+            var tataruPraise = Plugin.Config.TataruPraiseOnTarget;
+            if (ImGui.Checkbox(Language.SettingsSoundTataruPraise, ref tataruPraise)) {
+                Plugin.Config.TataruPraiseOnTarget = tataruPraise;
+                Plugin.Config.Save();
+            }
+
             ImGui.EndTabItem();
         }
 

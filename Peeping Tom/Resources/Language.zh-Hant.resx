@@ -171,4 +171,7 @@
     <data name="ChatLogTargeting" xml:space="preserve">
         <value>{0} 開始以你為目標</value>
     </data>
+    <data name="SettingsSoundTataruPraise" xml:space="preserve">
+        <value>有人盯著你時請塔塔露提醒（需安裝 TataruPraise）</value>
+    </data>
 </root>

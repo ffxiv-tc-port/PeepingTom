@@ -171,4 +171,7 @@
     <data name="ChatLogTargeting" xml:space="preserve">
         <value>{0} started targeting you.</value>
     </data>
+    <data name="SettingsSoundTataruPraise" xml:space="preserve">
+        <value>Have Tataru remind you when someone targets you (requires TataruPraise)</value>
+    </data>
 </root>
