@@ -58,7 +58,7 @@ internal static class TataruPraiseIpc {
             return false;
         } catch (Exception ex) {
             // 其他狀況（對方在自己的回呼裡爆掉之類）記一筆就好，絕不能讓它往上冒去打斷
-            // TargetWatcher 的更新迴圈。Information 級：要回報的使用者跑 LogLevel 2。
+            // TargetWatcher 的更新迴圈。Information 級：要回報的使用者跑 LogLevel 1。
             Service.Log.Information($"呼叫 TataruPraise 失敗（不影響 Peeping Tom）：{ex.Message}");
             return false;
         }
