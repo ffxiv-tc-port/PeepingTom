@@ -1,5 +1,17 @@
 # Peeping Tom
 
-This plugin for FFXIVLauncher shows who was or currently is targeting you.
+顯示現在或曾經以你為目標的玩家／怪物。指令 `/ptom`（或 `/ppeepingtom`、`/ppeep`）開啟主視窗。
 
-Icon: Eyes emoji from Twemoji 2.4
+## 主要功能
+
+- **鎖定清單**：即時列出正在鎖定你的對象，可依隊伍、小隊聯盟、戰鬥中、是否包含自己等條件篩選記錄。
+- **歷史紀錄**：保留最近幾筆鎖定紀錄與時間戳記，視窗關閉時也可繼續記錄。
+- **世界標記**：在鎖定你／你鎖定的對象頭上畫圈標示，大小可調整。
+- **互動**：滑鼠移到清單項目上可將該對象設為焦點目標，可選擇點擊直接開啟人物檢視。
+- **提醒**：被鎖定時可播放音效（含裝置、音量、冷卻時間設定）並列印到聊天視窗；也支援請 TataruPraise 念一句提示。
+- **視窗行為**：可設定登入自動開啟、戰鬥中／副本中／過場動畫中顯示與否、是否可移動縮放、Esc 關閉等。
+- **IPC**：提供其他插件查詢目標鎖定資訊的介面。
+
+原作者：[Caraxi](https://github.com/Caraxi/PeepingTom)
+
+Icon：Twemoji 2.4 的 Eyes emoji。
