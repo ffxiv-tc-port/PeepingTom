@@ -1,5 +1,30 @@
 # Peeping Tom
 
-This plugin for FFXIVLauncher shows who was or currently is targeting you.
+[Caraxi/PeepingTom](https://github.com/Caraxi/PeepingTom) 的台服移植版。
+顯示現在或曾經以你為目標的玩家。指令 `/ptom`（或 `/ppeepingtom`、`/ppeep`）開啟主視窗。
 
-Icon: Eyes emoji from Twemoji 2.4
+## 主要功能
+
+- **鎖定清單**：即時列出正在鎖定你的對象，可依隊伍、小隊聯盟、戰鬥中、是否包含自己等條件篩選記錄。
+- **隱藏黑名單玩家**（預設開）：遊戲黑名單裡的玩家以你為目標時不列出，也不會響提醒。
+- **歷史紀錄**：保留最近幾筆鎖定紀錄與時間戳記，視窗關閉時也可繼續記錄。
+- **世界標記**：在鎖定你／你鎖定的對象頭上畫圈標示，大小可調整。
+- **互動**：滑鼠移到清單項目上可將該對象設為焦點目標，可選擇點擊直接開啟人物檢視。
+- **提醒**：被鎖定時可播放音效（含裝置、音量、冷卻時間設定）並列印到聊天視窗；也支援請 TataruPraise 念一句提示。
+- **視窗行為**：可設定登入自動開啟、戰鬥中／副本中／過場動畫中顯示與否、是否可移動縮放、Esc 關閉等。
+- **IPC**：提供其他插件查詢目標鎖定資訊的介面。
+
+## 台服版的修改
+
+- 新增「隱藏黑名單玩家」（篩選分頁）
+- 有新的人開始盯著你時可請塔塔露出聲提醒（需搭配 TataruPraise）
+- 多處降低記憶體用量
+- 介面繁體中文化
+
+## 需要搭配的插件
+
+- 選用：TataruPraise（被鎖定時的語音提示）
+
+原作者：[Caraxi](https://github.com/Caraxi)
+
+Icon：Twemoji 2.4 的 Eyes emoji。

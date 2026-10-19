@@ -104,6 +104,20 @@ public class SettingsWindow : Window {
                 Plugin.Config.Save();
             }
 
+            var hideBlacklisted = Plugin.Config.HideBlacklistedPlayers;
+            if (ImGui.Checkbox(Language.SettingsFilterHideBlacklisted, ref hideBlacklisted)) {
+                Plugin.Config.HideBlacklistedPlayers = hideBlacklisted;
+                Plugin.Config.Save();
+            }
+
+            if (ImGui.IsItemHovered()) {
+                ImGui.SetTooltip(Language.SettingsFilterHideBlacklistedHelp);
+            }
+
+            if (Plugin.Config.HideBlacklistedPlayers && Plugin.Watcher.BlacklistState == BlacklistFilter.ReadState.Unreadable) {
+                ImGui.TextDisabled(Language.SettingsFilterBlacklistUnreadable);
+            }
+
             ImGui.EndTabItem();
         }
 
@@ -202,6 +216,30 @@ public class SettingsWindow : Window {
             var playWhenClosed = Plugin.Config.PlaySoundWhenClosed;
             if (ImGui.Checkbox(Language.SettingsSoundPlayWhenClosed, ref playWhenClosed)) {
                 Plugin.Config.PlaySoundWhenClosed = playWhenClosed;
+                Plugin.Config.Save();
+            }
+
+            ImGui.Spacing();
+
+            var tataruPraise = Plugin.Config.TataruPraiseOnTarget;
+            if (ImGui.Checkbox(Language.SettingsSoundTataruPraise, ref tataruPraise)) {
+                Plugin.Config.TataruPraiseOnTarget = tataruPraise;
+                Plugin.Config.Save();
+            }
+
+            ImGui.EndTabItem();
+        }
+
+        if (ImGui.BeginTabItem($"{Language.SettingsChatTab}###chat-tab")) {
+            var logToChat = Plugin.Config.LogToChat;
+            if (ImGui.Checkbox(Language.SettingsChatLogEnabled, ref logToChat)) {
+                Plugin.Config.LogToChat = logToChat;
+                Plugin.Config.Save();
+            }
+
+            var logToChatWhenClosed = Plugin.Config.LogToChatWhenClosed;
+            if (ImGui.Checkbox(Language.SettingsChatLogWhenClosed, ref logToChatWhenClosed)) {
+                Plugin.Config.LogToChatWhenClosed = logToChatWhenClosed;
                 Plugin.Config.Save();
             }
 

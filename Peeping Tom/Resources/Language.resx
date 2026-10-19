@@ -96,6 +96,15 @@
     <data name="SettingsSoundPlayWhenClosed" xml:space="preserve">
         <value>Play sound when window is closed</value>
     </data>
+    <data name="SettingsChatTab" xml:space="preserve">
+        <value>Chat</value>
+    </data>
+    <data name="SettingsChatLogEnabled" xml:space="preserve">
+        <value>Log to chat when someone targets you</value>
+    </data>
+    <data name="SettingsChatLogWhenClosed" xml:space="preserve">
+        <value>Log to chat when window is closed</value>
+    </data>
     <data name="SettingsWindowTab" xml:space="preserve">
         <value>Window</value>
     </data>
@@ -158,5 +167,20 @@
     </data>
     <data name="SoundChatError" xml:space="preserve">
         <value>Could not play sound file: {0}</value>
+    </data>
+    <data name="ChatLogTargeting" xml:space="preserve">
+        <value>{0} started targeting you.</value>
+    </data>
+    <data name="SettingsSoundTataruPraise" xml:space="preserve">
+        <value>Have Tataru remind you when someone targets you (requires TataruPraise)</value>
+    </data>
+    <data name="SettingsFilterHideBlacklisted" xml:space="preserve">
+        <value>Hide blacklisted players</value>
+    </data>
+    <data name="SettingsFilterHideBlacklistedHelp" xml:space="preserve">
+        <value>Players on your in-game blacklist are left out of the list (including history), and don't trigger the sound, chat log, markers or Tataru reminder.</value>
+    </data>
+    <data name="SettingsFilterBlacklistUnreadable" xml:space="preserve">
+        <value>Your in-game blacklist can't be read right now, so no one is being hidden.</value>
     </data>
 </root>

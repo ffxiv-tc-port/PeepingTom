@@ -60,6 +60,15 @@ namespace PeepingTom.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} started targeting you..
+        /// </summary>
+        internal static string ChatLogTargeting {
+            get {
+                return ResourceManager.GetString("ChatLogTargeting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is not close enough to examine..
         /// </summary>
         internal static string ExamineErrorToast {
@@ -137,6 +146,60 @@ namespace PeepingTom.Resources {
         internal static string SettingsBehaviourTab {
             get {
                 return ResourceManager.GetString("SettingsBehaviourTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log to chat when someone targets you.
+        /// </summary>
+        internal static string SettingsChatLogEnabled {
+            get {
+                return ResourceManager.GetString("SettingsChatLogEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log to chat when window is closed.
+        /// </summary>
+        internal static string SettingsChatLogWhenClosed {
+            get {
+                return ResourceManager.GetString("SettingsChatLogWhenClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chat.
+        /// </summary>
+        internal static string SettingsChatTab {
+            get {
+                return ResourceManager.GetString("SettingsChatTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your in-game blacklist can&apos;t be read right now, so no one is being hidden..
+        /// </summary>
+        internal static string SettingsFilterBlacklistUnreadable {
+            get {
+                return ResourceManager.GetString("SettingsFilterBlacklistUnreadable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide blacklisted players.
+        /// </summary>
+        internal static string SettingsFilterHideBlacklisted {
+            get {
+                return ResourceManager.GetString("SettingsFilterHideBlacklisted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Players on your in-game blacklist are left out of the list (including history), and don&apos;t trigger the sound, chat log, markers or Tataru reminder..
+        /// </summary>
+        internal static string SettingsFilterHideBlacklistedHelp {
+            get {
+                return ResourceManager.GetString("SettingsFilterHideBlacklistedHelp", resourceCulture);
             }
         }
         
@@ -371,6 +434,15 @@ namespace PeepingTom.Resources {
         internal static string SettingsSoundTab {
             get {
                 return ResourceManager.GetString("SettingsSoundTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Have Tataru remind you when someone targets you (requires TataruPraise).
+        /// </summary>
+        internal static string SettingsSoundTataruPraise {
+            get {
+                return ResourceManager.GetString("SettingsSoundTataruPraise", resourceCulture);
             }
         }
         

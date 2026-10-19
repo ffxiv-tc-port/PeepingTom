@@ -45,6 +45,10 @@
             <HintPath>$(DalamudLibPath)\FFXIVClientStructs.dll</HintPath>
             <Private>False</Private>
         </Reference>
+        <Reference Include="InteropGenerator.Runtime">
+            <HintPath>$(DalamudLibPath)\InteropGenerator.Runtime.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
         <Reference Include="Lumina">
             <HintPath>$(DalamudLibPath)\Lumina.dll</HintPath>
             <Private>False</Private>

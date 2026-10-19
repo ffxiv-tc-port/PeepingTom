@@ -24,6 +24,9 @@ internal class MainWindow : Window {
     public bool IsVisible { get; private set; }
     
     private ulong? PreviousFocus { get; set; } = new();
+
+    // 只在 Draw 那一幀內有內容：IGameObject 包裝會被就地改寫成別的物件，不可留到下一幀。
+    private readonly Dictionary<ulong, IGameObject> objectsThisFrame = new();
     
     private static void HelpMarker(string text) {
         ImGui.TextDisabled("(?)");
@@ -66,6 +69,14 @@ internal class MainWindow : Window {
     }
 
     public override void Draw() {
+        try {
+            DrawContents();
+        } finally {
+            objectsThisFrame.Clear();
+        }
+    }
+
+    private void DrawContents() {
         IsVisible = true;
         var targeting = Plugin.Watcher.CurrentTargeters;
         var previousTargeters = Plugin.Config.KeepHistory ? Plugin.Watcher.PreviousTargeters : null;
@@ -74,7 +85,7 @@ internal class MainWindow : Window {
         // create a dictionary for O(1) lookups by actor id
         Dictionary<ulong, IGameObject>? objects = null;
         if (targeting.Count + (previousTargeters?.Count ?? 0) > 1) {
-            var dict = new Dictionary<ulong, IGameObject>();
+            var dict = objectsThisFrame;
             foreach (var obj in Service.ObjectTable) {
                 if (dict.ContainsKey(obj.GameObjectId) || obj.ObjectKind != ObjectKind.Player) {
                     continue;
@@ -187,7 +198,10 @@ internal class MainWindow : Window {
                 if (Plugin.Config.OpenExamine && ImGui.GetIO().KeyAlt) {
                     if (obj != null) {
                         unsafe {
-                            AgentInspect.Instance()->ExamineCharacter(obj.EntityId);
+                            var inspect = AgentInspect.Instance();
+                            if (inspect != null) {
+                                inspect->ExamineCharacter(obj.EntityId);
+                            }
                         }
                     } else {
                         var error = string.Format(Language.ExamineErrorToast, targeter.Name);

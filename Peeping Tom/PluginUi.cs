@@ -1,6 +1,5 @@
 ﻿using Dalamud.Bindings.ImGui;
 using System;
-using System.Linq;
 using System.Numerics;
 using Dalamud.Game.ClientState.Objects.SubKinds;
 using Dalamud.Game.ClientState.Objects.Types;
@@ -40,17 +39,26 @@ namespace PeepingTom {
 
             if (!Plugin.Config.MarkTargeting) return;
 
-            var player = Service.ClientState.LocalPlayer;
+            var player = Service.ObjectTable.LocalPlayer;
             if (player == null) return;
 
-            var targeting = Plugin.Watcher.CurrentTargeters
-                .Select(targeter => Service.ObjectTable.FirstOrDefault(obj => obj.GameObjectId == targeter.GameObjectId))
-                .Where(targeter => targeter is IPlayerCharacter)
-                .Cast<IPlayerCharacter>()
-                .ToArray();
-            foreach (var targeter in targeting) {
-                MarkPlayer(targeter, Plugin.Config.TargetingColour, Plugin.Config.TargetingSize);
+            // 每幀都跑、不配置。查到的包裝只在這一幀內用，不留到下一幀。
+            foreach (var targeter in Plugin.Watcher.CurrentSpan) {
+                if (FindObject(targeter.GameObjectId) is IPlayerCharacter actor) {
+                    MarkPlayer(actor, Plugin.Config.TargetingColour, Plugin.Config.TargetingSize);
+                }
             }
+        }
+
+        // 物件表裡第一個 id 相符的物件（不管是不是玩家）。
+        private static IGameObject? FindObject(ulong gameObjectId) {
+            foreach (var obj in Service.ObjectTable) {
+                if (obj.GameObjectId == gameObjectId) {
+                    return obj;
+                }
+            }
+
+            return null;
         }
 
         private void MarkPlayer(IGameObject? player, Vector4 colour, float size) {
@@ -75,7 +83,7 @@ namespace PeepingTom {
         }
 
         private IPlayerCharacter? GetCurrentTarget() {
-            var player = Service.ClientState.LocalPlayer;
+            var player = Service.ObjectTable.LocalPlayer;
             if (player == null) {
                 return null;
             }
@@ -85,10 +93,13 @@ namespace PeepingTom {
                 return null;
             }
 
-            return Service.ObjectTable
-                .Where(actor => actor.GameObjectId == targetId && actor is IPlayerCharacter)
-                .Select(actor => actor as IPlayerCharacter)
-                .FirstOrDefault();
+            foreach (var actor in Service.ObjectTable) {
+                if (actor.GameObjectId == targetId && actor is IPlayerCharacter targeted) {
+                    return targeted;
+                }
+            }
+
+            return null;
         }
     }
 }
