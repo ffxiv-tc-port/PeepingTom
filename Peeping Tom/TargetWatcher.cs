@@ -391,7 +391,7 @@ namespace PeepingTom {
             }).Start();
         }
 
-        // WaveChannel32 只收單聲道／立體聲；被拒的自訂音效以路徑＋最後寫入時間記住，換檔後才重試。
+        // WaveChannel32 只收單聲道／立體聲的 8／16／24 位元 PCM 或浮點；被拒的自訂音效以路徑＋最後寫入時間記住，換檔後才重試。
         // 播放執行緒可能重疊，集合一律在鎖內碰。
         private readonly object _unsupportedSoundsLock = new();
         private readonly HashSet<(string Path, DateTime WriteTime)> _unsupportedSounds = [];
@@ -462,7 +462,10 @@ namespace PeepingTom {
 
             var fileName = Path.GetFileName(key.Path);
             Service.Log.Warning(ex, $"Sound file \"{fileName}\" has an unsupported format ({format}); it will be skipped until it changes");
-            SendError(string.Format(Language.SoundFormatUnsupported, fileName));
+            // NAudio 對所有不支援的格式擲同一則例外，提示依格式本身分流。
+            SendError(format.Channels > 2
+                ? string.Format(Language.SoundChannelsUnsupported, fileName)
+                : string.Format(Language.SoundEncodingUnsupported, fileName, format.BitsPerSample, format.Encoding));
         }
 
         private static DateTime LastWriteTimeOrMin(string path) {

@@ -183,7 +183,10 @@
     <data name="SettingsFilterBlacklistUnreadable" xml:space="preserve">
         <value>Your in-game blacklist can't be read right now, so no one is being hidden.</value>
     </data>
-    <data name="SoundFormatUnsupported" xml:space="preserve">
+    <data name="SoundChannelsUnsupported" xml:space="preserve">
         <value>The sound file "{0}" can't be played: only mono or stereo files are supported. Please switch to a 1-2 channel sound file. It won't be tried again until the file changes.</value>
+    </data>
+    <data name="SoundEncodingUnsupported" xml:space="preserve">
+        <value>The sound file "{0}" can't be played: its format ({1}-bit {2}) isn't supported, only 8/16/24-bit PCM or floating-point files are. Please convert it to a 16-bit file. It won't be tried again until the file changes.</value>
     </data>
 </root>

@@ -183,7 +183,10 @@
     <data name="SettingsFilterBlacklistUnreadable" xml:space="preserve">
         <value>目前讀不到遊戲的黑名單，暫時不會隱藏任何人。</value>
     </data>
-    <data name="SoundFormatUnsupported" xml:space="preserve">
+    <data name="SoundChannelsUnsupported" xml:space="preserve">
         <value>音效檔「{0}」的格式無法播放：只支援單聲道或立體聲。請換成 1～2 聲道的音效檔；檔案更換前不會再嘗試播放。</value>
+    </data>
+    <data name="SoundEncodingUnsupported" xml:space="preserve">
+        <value>音效檔「{0}」的格式（{1} 位元、{2}）無法播放：只支援 8／16／24 位元 PCM 或浮點格式。請轉成 16 位元的音效檔；檔案更換前不會再嘗試播放。</value>
     </data>
 </root>

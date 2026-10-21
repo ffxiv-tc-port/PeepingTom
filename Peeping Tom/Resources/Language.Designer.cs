@@ -557,9 +557,18 @@ namespace PeepingTom.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The sound file &quot;{0}&quot; can&apos;t be played: only mono or stereo files are supported..
         /// </summary>
-        internal static string SoundFormatUnsupported {
+        internal static string SoundChannelsUnsupported {
             get {
-                return ResourceManager.GetString("SoundFormatUnsupported", resourceCulture);
+                return ResourceManager.GetString("SoundChannelsUnsupported", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The sound file &quot;{0}&quot; can&apos;t be played: its format ({1}-bit {2}) isn&apos;t supported..
+        /// </summary>
+        internal static string SoundEncodingUnsupported {
+            get {
+                return ResourceManager.GetString("SoundEncodingUnsupported", resourceCulture);
             }
         }
     }
