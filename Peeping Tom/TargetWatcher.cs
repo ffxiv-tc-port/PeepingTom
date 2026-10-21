@@ -132,9 +132,13 @@ namespace PeepingTom {
 
             HandleHistory(Current);
 
-            if (Plugin.Config.HideBlacklistedPlayers && BlacklistHistoryWatch.Elapsed >= TimeSpan.FromSeconds(1)) {
+            if (BlacklistHistoryWatch.Elapsed >= TimeSpan.FromSeconds(1)) {
                 BlacklistHistoryWatch.Restart();
-                RemoveBlacklistedFromHistory();
+                if (Plugin.Config.HideBlacklistedPlayers) {
+                    RemoveBlacklistedFromHistory();
+                } else {
+                    Blacklist.Prune(Current, Previous);
+                }
             }
 
             // play sound if necessary
@@ -231,8 +235,12 @@ namespace PeepingTom {
                     continue;
                 }
 
-                if (Plugin.Config.HideBlacklistedPlayers && Blacklist.IsBlocked(actor)) {
-                    continue;
+                if (Plugin.Config.HideBlacklistedPlayers) {
+                    if (Blacklist.IsBlocked(actor)) {
+                        continue;
+                    }
+                } else {
+                    Blacklist.Remember(actor);
                 }
 
                 found.Add(new Targeter(ReadName(actor), actor.HomeWorld.RowId, actor.EntityId, actor.GameObjectId, DateTime.UtcNow));

@@ -32,15 +32,28 @@ internal sealed class BlacklistFilter {
     internal ReadState State => state;
 
     /// <summary>只能拿當幀從 ObjectTable 取得的物件呼叫；順手記下它的 AccountId／ContentId。</summary>
-    internal unsafe bool IsBlocked(IPlayerCharacter actor) {
+    internal bool IsBlocked(IPlayerCharacter actor) {
+        return TryRemember(actor, out var ids) && Query(ids);
+    }
+
+    /// <summary>
+    /// 只記 AccountId／ContentId、不查黑名單；開關關著時也記，開啟後歷史記錄裡的人才查得到。
+    /// 同 <see cref="IsBlocked(IPlayerCharacter)"/>，只能拿當幀從 ObjectTable 取得的物件呼叫。
+    /// </summary>
+    internal void Remember(IPlayerCharacter actor) {
+        TryRemember(actor, out _);
+    }
+
+    private unsafe bool TryRemember(IPlayerCharacter actor, out Ids ids) {
         var chara = (Character*)actor.Address;
         if (chara == null) {
+            ids = default;
             return false;
         }
 
-        var ids = new Ids(chara->AccountId, chara->ContentId);
+        ids = new Ids(chara->AccountId, chara->ContentId);
         idsByObjectId[actor.GameObjectId] = ids;
-        return Query(ids);
+        return true;
     }
 
     /// <summary>歷史記錄用：只認得先前經過 <see cref="IsBlocked(IPlayerCharacter)"/> 記下的人。</summary>
