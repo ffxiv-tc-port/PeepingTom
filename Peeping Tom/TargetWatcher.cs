@@ -3,6 +3,7 @@ using Resourcer;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using Dalamud.Game.ClientState.Objects.Enums;
@@ -377,26 +378,63 @@ namespace PeepingTom {
                 return;
             }
 
+            var device = soundDevice.Guid;
             new Thread(() => {
-                WaveStream reader;
+                // 執行緒入口冒出的未處理例外會讓整個遊戲結束。
                 try {
-                    if (Plugin.Config.SoundPath == null) {
-                        reader = new WaveFileReader(Resource.AsStream("Resources/target.wav"));
-                    } else {
-                        reader = new MediaFoundationReader(Plugin.Config.SoundPath);
+                    PlaySoundOn(device);
+                } catch (Exception ex) {
+                    if (Interlocked.Exchange(ref this._soundThreadFailureLogged, 1) == 0) {
+                        Service.Log.Warning(ex, "Unexpected failure while playing the targeting sound");
                     }
-                } catch (Exception e) {
-                    var error = string.Format(Language.SoundChatError, e.Message);
-                    SendError(error);
+                }
+            }).Start();
+        }
+
+        // WaveChannel32 只收單聲道／立體聲；被拒的自訂音效以路徑＋最後寫入時間記住，換檔後才重試。
+        // 播放執行緒可能重疊，集合一律在鎖內碰。
+        private readonly object _unsupportedSoundsLock = new();
+        private readonly HashSet<(string Path, DateTime WriteTime)> _unsupportedSounds = [];
+        private int _soundThreadFailureLogged;
+
+        private void PlaySoundOn(Guid device) {
+            var path = Plugin.Config.SoundPath;
+            (string Path, DateTime WriteTime)? key = path == null ? null : (path, LastWriteTimeOrMin(path));
+            if (key != null) {
+                lock (this._unsupportedSoundsLock) {
+                    if (this._unsupportedSounds.Contains(key.Value)) {
+                        return;
+                    }
+                }
+            }
+
+            WaveStream reader;
+            try {
+                if (path == null) {
+                    reader = new WaveFileReader(Resource.AsStream("Resources/target.wav"));
+                } else {
+                    reader = new MediaFoundationReader(path);
+                }
+            } catch (Exception e) {
+                var error = string.Format(Language.SoundChatError, e.Message);
+                SendError(error);
+                return;
+            }
+
+            using (reader) {
+                WaveChannel32 channel;
+                try {
+                    channel = new WaveChannel32(reader);
+                } catch (ArgumentException ex) when (key != null) {
+                    ReportUnsupportedSound(key.Value, reader.WaveFormat, ex);
                     return;
                 }
 
-                using var channel = new WaveChannel32(reader);
-                channel.Volume = Plugin.Config.SoundVolume;
-                channel.PadWithZeroes = false;
+                using (channel) {
+                    channel.Volume = Plugin.Config.SoundVolume;
+                    channel.PadWithZeroes = false;
 
-                using (reader) {
-                    using var output = new DirectSoundOut(soundDevice.Guid);
+                    using var output = new DirectSoundOut(device);
 
                     try {
                         output.Init(channel);
@@ -409,7 +447,30 @@ namespace PeepingTom {
                         Service.Log.Error(ex, "Exception playing sound");
                     }
                 }
-            }).Start();
+            }
+        }
+
+        private void ReportUnsupportedSound((string Path, DateTime WriteTime) key, WaveFormat format, Exception ex) {
+            bool added;
+            lock (this._unsupportedSoundsLock) {
+                added = this._unsupportedSounds.Add(key);
+            }
+
+            if (!added) {
+                return;
+            }
+
+            var fileName = Path.GetFileName(key.Path);
+            Service.Log.Warning(ex, $"Sound file \"{fileName}\" has an unsupported format ({format}); it will be skipped until it changes");
+            SendError(string.Format(Language.SoundFormatUnsupported, fileName));
+        }
+
+        private static DateTime LastWriteTimeOrMin(string path) {
+            try {
+                return File.GetLastWriteTimeUtc(path);
+            } catch (Exception) {
+                return DateTime.MinValue;
+            }
         }
 
         private void SendError(string message) {

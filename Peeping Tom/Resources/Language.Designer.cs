@@ -553,5 +553,14 @@ namespace PeepingTom.Resources {
                 return ResourceManager.GetString("SoundChatError", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The sound file &quot;{0}&quot; can&apos;t be played: only mono or stereo files are supported..
+        /// </summary>
+        internal static string SoundFormatUnsupported {
+            get {
+                return ResourceManager.GetString("SoundFormatUnsupported", resourceCulture);
+            }
+        }
     }
 }
