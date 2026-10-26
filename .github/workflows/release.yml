@@ -99,3 +99,4 @@ jobs:
             Peeping Tom/bin/Release/net9-windows/PeepingTom/PeepingTom.json
           generate_release_notes: true
 # ci: 觸發 Actions 註冊 release workflow(新 repo dispatch-only 首次)
+# workflow re-registration trigger 2026-10-26T18:27:16Z
