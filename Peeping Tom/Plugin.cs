@@ -30,7 +30,7 @@ namespace PeepingTom {
             Service.Interface.LanguageChanged += OnLanguageChange;
 
             Service.CommandManager.AddHandler("/ppeepingtom", new CommandInfo(OnCommand) {
-                HelpMessage = "Use with no arguments to show the list. Use with \"c\" or \"config\" to show the config",
+                HelpMessage = "Use with no arguments to show the list. Use with \"c\" or \"config\" to show the config, \"records\" to show the targeting records",
             });
             Service.CommandManager.AddHandler("/ptom", new CommandInfo(OnCommand) {
                 HelpMessage = "Alias for /ppeepingtom",
@@ -80,6 +80,8 @@ namespace PeepingTom {
         private void OnCommand(string command, string args) {
             if (args is "config" or "c") {
                 Ui.SettingsWindow.IsOpen = !Ui.SettingsWindow.IsOpen;
+            } else if (args is "records") {
+                Ui.RecordsWindow.IsOpen = !Ui.RecordsWindow.IsOpen;
             } else {
                 Ui.MainWindow.IsOpen = !Ui.MainWindow.IsOpen;
             }
@@ -93,6 +95,7 @@ namespace PeepingTom {
         private void OnLogout(int type, int code) {
             Ui.MainWindow.IsOpen = false;
             Watcher.ClearPrevious();
+            Watcher.Records.EndAll();
         }
     }
 }

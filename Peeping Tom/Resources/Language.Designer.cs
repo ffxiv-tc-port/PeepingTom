@@ -571,5 +571,275 @@ namespace PeepingTom.Resources {
                 return ResourceManager.GetString("SoundEncodingUnsupported", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to  (#{0}).
+        /// </summary>
+        internal static string ChatLogTargetingCount {
+            get {
+                return ResourceManager.GetString("ChatLogTargetingCount", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Records.
+        /// </summary>
+        internal static string SettingsRecordsTab {
+            get {
+                return ResourceManager.GetString("SettingsRecordsTab", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Count how often each player targets you and keep a record.
+        /// </summary>
+        internal static string SettingsRecordsEnabled {
+            get {
+                return ResourceManager.GetString("SettingsRecordsEnabled", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Each time the same player starts targeting you again counts once more. Records are kept across logins in the plugin&apos;s config folder. Players on your in-game blacklist are never counted or recorded..
+        /// </summary>
+        internal static string SettingsRecordsEnabledHelp {
+            get {
+                return ResourceManager.GetString("SettingsRecordsEnabledHelp", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Same-time window (seconds).
+        /// </summary>
+        internal static string SettingsRecordsMergeSeconds {
+            get {
+                return ResourceManager.GetString("SettingsRecordsMergeSeconds", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to If a player stops targeting you and targets you again within this many seconds, it still counts as the same time, so tab-targeting back and forth doesn&apos;t add up..
+        /// </summary>
+        internal static string SettingsRecordsMergeSecondsHelp {
+            get {
+                return ResourceManager.GetString("SettingsRecordsMergeSecondsHelp", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Open targeting records.
+        /// </summary>
+        internal static string RecordsOpen {
+            get {
+                return ResourceManager.GetString("RecordsOpen", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} records.
+        /// </summary>
+        internal static string RecordsTitle {
+            get {
+                return ResourceManager.GetString("RecordsTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Counting and recording is turned off in the settings; nothing new is being recorded..
+        /// </summary>
+        internal static string RecordsDisabled {
+            get {
+                return ResourceManager.GetString("RecordsDisabled", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Loading records….
+        /// </summary>
+        internal static string RecordsLoading {
+            get {
+                return ResourceManager.GetString("RecordsLoading", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Couldn&apos;t read the records file. Records from this session are shown but won&apos;t be saved..
+        /// </summary>
+        internal static string RecordsLoadFailed {
+            get {
+                return ResourceManager.GetString("RecordsLoadFailed", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The records file was damaged. It was kept as {0} and recording started over..
+        /// </summary>
+        internal static string RecordsRecoveredCorrupt {
+            get {
+                return ResourceManager.GetString("RecordsRecoveredCorrupt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Search name.
+        /// </summary>
+        internal static string RecordsSearchHint {
+            get {
+                return ResourceManager.GetString("RecordsSearchHint", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Most times first.
+        /// </summary>
+        internal static string RecordsSortCount {
+            get {
+                return ResourceManager.GetString("RecordsSortCount", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Most recent first.
+        /// </summary>
+        internal static string RecordsSortRecent {
+            get {
+                return ResourceManager.GetString("RecordsSortRecent", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Clear records.
+        /// </summary>
+        internal static string RecordsClear {
+            get {
+                return ResourceManager.GetString("RecordsClear", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Delete all targeting records? This can&apos;t be undone..
+        /// </summary>
+        internal static string RecordsClearConfirm {
+            get {
+                return ResourceManager.GetString("RecordsClearConfirm", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string RecordsClearYes {
+            get {
+                return ResourceManager.GetString("RecordsClearYes", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string RecordsClearNo {
+            get {
+                return ResourceManager.GetString("RecordsClearNo", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Showing {0} of {1} players.
+        /// </summary>
+        internal static string RecordsSummary {
+            get {
+                return ResourceManager.GetString("RecordsSummary", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string RecordsColumnName {
+            get {
+                return ResourceManager.GetString("RecordsColumnName", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Home world.
+        /// </summary>
+        internal static string RecordsColumnWorld {
+            get {
+                return ResourceManager.GetString("RecordsColumnWorld", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Times.
+        /// </summary>
+        internal static string RecordsColumnCount {
+            get {
+                return ResourceManager.GetString("RecordsColumnCount", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Last time.
+        /// </summary>
+        internal static string RecordsColumnLast {
+            get {
+                return ResourceManager.GetString("RecordsColumnLast", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Last place.
+        /// </summary>
+        internal static string RecordsColumnPlace {
+            get {
+                return ResourceManager.GetString("RecordsColumnPlace", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Total time.
+        /// </summary>
+        internal static string RecordsColumnDuration {
+            get {
+                return ResourceManager.GetString("RecordsColumnDuration", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Targeted you {0} times.
+        /// </summary>
+        internal static string RecordsTooltipCount {
+            get {
+                return ResourceManager.GetString("RecordsTooltipCount", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to First time: {0}.
+        /// </summary>
+        internal static string RecordsTooltipFirst {
+            get {
+                return ResourceManager.GetString("RecordsTooltipFirst", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Last time: {0} ({1}).
+        /// </summary>
+        internal static string RecordsTooltipLast {
+            get {
+                return ResourceManager.GetString("RecordsTooltipLast", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Total time targeting you: {0}.
+        /// </summary>
+        internal static string RecordsTooltipDuration {
+            get {
+                return ResourceManager.GetString("RecordsTooltipDuration", resourceCulture);
+            }
+        }
     }
 }

@@ -45,8 +45,11 @@ namespace PeepingTom {
 
         internal BlacklistFilter.ReadState BlacklistState => Blacklist.State;
 
+        internal TargetRecordStore Records { get; }
+
         public TargetWatcher(Plugin plugin) {
             Plugin = plugin;
+            Records = new TargetRecordStore(Service.Interface.GetPluginConfigDirectory());
             UpdateWatch.Start();
 
             Service.Framework.Update += OnFrameworkUpdate;
@@ -54,6 +57,7 @@ namespace PeepingTom {
 
         public void Dispose() {
             Service.Framework.Update -= OnFrameworkUpdate;
+            Records.Dispose();
         }
 
         public void ClearPrevious() {
@@ -62,6 +66,8 @@ namespace PeepingTom {
         }
 
         private void OnFrameworkUpdate(IFramework framework1) {
+            Records.Tick();
+
             if (Plugin.InPvp) {
                 return;
             }
@@ -81,6 +87,7 @@ namespace PeepingTom {
             var newCurrent = GetTargeting(Service.ObjectTable, player);
 
             var logToChat = CanLogToChat();
+            var now = DateTime.UtcNow;
 
             // 這一輪有沒有「新出現的 targeter」。判定沿用下面 foreach 的同一個條件
             // （newCurrent 裡有、Current 裡沒有的 GameObjectId），也就跟著沿用了
@@ -94,6 +101,13 @@ namespace PeepingTom {
 
                 anyNewTargeter = true;
 
+                var count = 0;
+                try {
+                    count = RecordArrival(newTargeter, now);
+                } catch (Exception ex) {
+                    Service.Log.Error(ex, "Failed to record targeter");
+                }
+
                 try {
                     Plugin.IpcManager.SendNewTargeter(newTargeter);
                 } catch (Exception ex) {
@@ -102,7 +116,7 @@ namespace PeepingTom {
 
                 if (logToChat) {
                     try {
-                        LogTargeterToChat(newTargeter);
+                        LogTargeterToChat(newTargeter, count);
                     } catch (Exception ex) {
                         Service.Log.Error(ex, "Failed to log targeter to chat");
                     }
@@ -120,6 +134,8 @@ namespace PeepingTom {
                 if (ContainsId(newCurrent, stopped.GameObjectId)) {
                     continue;
                 }
+
+                Records.Tracker.Depart(stopped.GameObjectId, now);
 
                 try {
                     Plugin.IpcManager.SendStoppedTargeting(stopped);
@@ -148,6 +164,18 @@ namespace PeepingTom {
             }
 
             LastTargetAmount = Current.Length;
+        }
+
+        // 只在有人新盯上你時跑（名字字串在這裡才配置）。黑名單一律不計：開著隱藏時 GetTargeting 已濾掉，關著才另查。
+        private int RecordArrival(Targeter targeter, DateTime nowUtc) {
+            if (!Plugin.Config.RecordTargeters) {
+                return 0;
+            }
+
+            var blocked = !Plugin.Config.HideBlacklistedPlayers && Blacklist.IsBlocked(targeter);
+            var merge = TimeSpan.FromSeconds(Math.Max(0f, Plugin.Config.RecordMergeSeconds));
+            return Records.Tracker.Arrive(targeter.GameObjectId, targeter.Name.TextValue, targeter.HomeWorldId,
+                Service.ClientState.TerritoryType, nowUtc, merge, blocked);
         }
 
         private void HandleHistory(Targeter[] targeting) {
@@ -347,7 +375,7 @@ namespace PeepingTom {
             return Plugin.Config.LogToChatWhenClosed || Plugin.Ui.MainWindow.IsVisible;
         }
 
-        private void LogTargeterToChat(Targeter targeter) {
+        private void LogTargeterToChat(Targeter targeter, int count) {
             // the name has to stay a PlayerPayload so it remains clickable, so the localised
             // sentence is split around its {0} placeholder rather than run through string.Format
             var format = Language.ChatLogTargeting;
@@ -373,6 +401,10 @@ namespace PeepingTom {
                 if (after.Length > 0) {
                     payloads.Add(new TextPayload(after));
                 }
+            }
+
+            if (count > 0) {
+                payloads.Add(new TextPayload(string.Format(Language.ChatLogTargetingCount, count)));
             }
 
             Service.ChatGui.Print(new XivChatEntry {

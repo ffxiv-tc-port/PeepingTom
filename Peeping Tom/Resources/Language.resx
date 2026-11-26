@@ -189,4 +189,94 @@
     <data name="SoundEncodingUnsupported" xml:space="preserve">
         <value>The sound file "{0}" can't be played: its format ({1}-bit {2}) isn't supported, only 8/16/24-bit PCM or floating-point files are. Please convert it to a 16-bit file. It won't be tried again until the file changes.</value>
     </data>
+    <data name="ChatLogTargetingCount" xml:space="preserve">
+        <value> (#{0})</value>
+    </data>
+    <data name="SettingsRecordsTab" xml:space="preserve">
+        <value>Records</value>
+    </data>
+    <data name="SettingsRecordsEnabled" xml:space="preserve">
+        <value>Count how often each player targets you and keep a record</value>
+    </data>
+    <data name="SettingsRecordsEnabledHelp" xml:space="preserve">
+        <value>Each time the same player starts targeting you again counts once more. Records are kept across logins in the plugin's config folder. Players on your in-game blacklist are never counted or recorded.</value>
+    </data>
+    <data name="SettingsRecordsMergeSeconds" xml:space="preserve">
+        <value>Same-time window (seconds)</value>
+    </data>
+    <data name="SettingsRecordsMergeSecondsHelp" xml:space="preserve">
+        <value>If a player stops targeting you and targets you again within this many seconds, it still counts as the same time, so tab-targeting back and forth doesn't add up.</value>
+    </data>
+    <data name="RecordsOpen" xml:space="preserve">
+        <value>Open targeting records</value>
+    </data>
+    <data name="RecordsTitle" xml:space="preserve">
+        <value>{0} records</value>
+    </data>
+    <data name="RecordsDisabled" xml:space="preserve">
+        <value>Counting and recording is turned off in the settings; nothing new is being recorded.</value>
+    </data>
+    <data name="RecordsLoading" xml:space="preserve">
+        <value>Loading records…</value>
+    </data>
+    <data name="RecordsLoadFailed" xml:space="preserve">
+        <value>Couldn't read the records file. Records from this session are shown but won't be saved.</value>
+    </data>
+    <data name="RecordsRecoveredCorrupt" xml:space="preserve">
+        <value>The records file was damaged. It was kept as {0} and recording started over.</value>
+    </data>
+    <data name="RecordsSearchHint" xml:space="preserve">
+        <value>Search name</value>
+    </data>
+    <data name="RecordsSortCount" xml:space="preserve">
+        <value>Most times first</value>
+    </data>
+    <data name="RecordsSortRecent" xml:space="preserve">
+        <value>Most recent first</value>
+    </data>
+    <data name="RecordsClear" xml:space="preserve">
+        <value>Clear records</value>
+    </data>
+    <data name="RecordsClearConfirm" xml:space="preserve">
+        <value>Delete all targeting records? This can't be undone.</value>
+    </data>
+    <data name="RecordsClearYes" xml:space="preserve">
+        <value>Delete</value>
+    </data>
+    <data name="RecordsClearNo" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
+    <data name="RecordsSummary" xml:space="preserve">
+        <value>Showing {0} of {1} players</value>
+    </data>
+    <data name="RecordsColumnName" xml:space="preserve">
+        <value>Name</value>
+    </data>
+    <data name="RecordsColumnWorld" xml:space="preserve">
+        <value>Home world</value>
+    </data>
+    <data name="RecordsColumnCount" xml:space="preserve">
+        <value>Times</value>
+    </data>
+    <data name="RecordsColumnLast" xml:space="preserve">
+        <value>Last time</value>
+    </data>
+    <data name="RecordsColumnPlace" xml:space="preserve">
+        <value>Last place</value>
+    </data>
+    <data name="RecordsColumnDuration" xml:space="preserve">
+        <value>Total time</value>
+    </data>
+    <data name="RecordsTooltipCount" xml:space="preserve">
+        <value>Targeted you {0} times</value>
+    </data>
+    <data name="RecordsTooltipFirst" xml:space="preserve">
+        <value>First time: {0}</value>
+    </data>
+    <data name="RecordsTooltipLast" xml:space="preserve">
+        <value>Last time: {0} ({1})</value>
+    </data>
+    <data name="RecordsTooltipDuration" xml:space="preserve">
+        <value>Total time targeting you: {0}</value>
+    </data>
 </root>

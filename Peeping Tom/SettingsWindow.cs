@@ -331,6 +331,36 @@ public class SettingsWindow : Window {
             ImGui.EndTabItem();
         }
 
+        if (ImGui.BeginTabItem($"{Language.SettingsRecordsTab}###records-tab")) {
+            var recordTargeters = Plugin.Config.RecordTargeters;
+            if (ImGui.Checkbox(Language.SettingsRecordsEnabled, ref recordTargeters)) {
+                Plugin.Config.RecordTargeters = recordTargeters;
+                Plugin.Config.Save();
+                Plugin.Ui.MainWindow.UpdateConfig();
+            }
+
+            if (ImGui.IsItemHovered()) {
+                ImGui.SetTooltip(Language.SettingsRecordsEnabledHelp);
+            }
+
+            var mergeSeconds = Plugin.Config.RecordMergeSeconds;
+            ImGui.SetNextItemWidth(150f * ImGui.GetFontSize() / 16f);
+            if (ImGui.DragFloat(Language.SettingsRecordsMergeSeconds, ref mergeSeconds, .05f, 0f, 60f, "%.1f")) {
+                Plugin.Config.RecordMergeSeconds = Math.Clamp(mergeSeconds, 0f, 60f);
+                Plugin.Config.Save();
+            }
+
+            if (ImGui.IsItemHovered()) {
+                ImGui.SetTooltip(Language.SettingsRecordsMergeSecondsHelp);
+            }
+
+            if (ImGui.Button(Language.RecordsOpen)) {
+                Plugin.Ui.RecordsWindow.IsOpen = true;
+            }
+
+            ImGui.EndTabItem();
+        }
+
         if (ImGui.BeginTabItem($"{Language.SettingsAdvancedTab}###advanced-tab")) {
             var pollFrequency = Plugin.Config.PollFrequency;
             if (ImGui.DragInt(Language.SettingsAdvancedPollFrequency, ref pollFrequency, .1f, 1, 1600)) {

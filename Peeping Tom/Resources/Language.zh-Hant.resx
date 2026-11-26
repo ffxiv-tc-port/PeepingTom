@@ -189,4 +189,94 @@
     <data name="SoundEncodingUnsupported" xml:space="preserve">
         <value>音效檔「{0}」的格式（{1} 位元、{2}）無法播放：只支援 8／16／24 位元 PCM 或浮點格式。請轉成 16 位元的音效檔；檔案更換前不會再嘗試播放。</value>
     </data>
+    <data name="ChatLogTargetingCount" xml:space="preserve">
+        <value>（第 {0} 次）</value>
+    </data>
+    <data name="SettingsRecordsTab" xml:space="preserve">
+        <value>盯人紀錄</value>
+    </data>
+    <data name="SettingsRecordsEnabled" xml:space="preserve">
+        <value>累計每位玩家盯著你的次數並保存紀錄</value>
+    </data>
+    <data name="SettingsRecordsEnabledHelp" xml:space="preserve">
+        <value>同一位玩家每次重新把目標設成你就累計一次；紀錄存在插件的設定資料夾，下次登入仍在。遊戲黑名單裡的玩家不計次也不記錄。</value>
+    </data>
+    <data name="SettingsRecordsMergeSeconds" xml:space="preserve">
+        <value>視為同一次的間隔（秒）</value>
+    </data>
+    <data name="SettingsRecordsMergeSecondsHelp" xml:space="preserve">
+        <value>對方移開目標後在這幾秒內又盯回來，仍算同一次，避免對方用 Tab 切換目標時來回閃動灌次數。</value>
+    </data>
+    <data name="RecordsOpen" xml:space="preserve">
+        <value>開啟盯人紀錄</value>
+    </data>
+    <data name="RecordsTitle" xml:space="preserve">
+        <value>{0} 盯人紀錄</value>
+    </data>
+    <data name="RecordsDisabled" xml:space="preserve">
+        <value>設定裡已關閉計次與紀錄，目前不會記錄新的資料。</value>
+    </data>
+    <data name="RecordsLoading" xml:space="preserve">
+        <value>正在讀取紀錄…</value>
+    </data>
+    <data name="RecordsLoadFailed" xml:space="preserve">
+        <value>讀不到紀錄檔：這次登入記到的會顯示，但不會存檔。</value>
+    </data>
+    <data name="RecordsRecoveredCorrupt" xml:space="preserve">
+        <value>紀錄檔損毀，已改名為 {0} 保留，並重新開始記錄。</value>
+    </data>
+    <data name="RecordsSearchHint" xml:space="preserve">
+        <value>搜尋名字</value>
+    </data>
+    <data name="RecordsSortCount" xml:space="preserve">
+        <value>依次數排序</value>
+    </data>
+    <data name="RecordsSortRecent" xml:space="preserve">
+        <value>依最近時間排序</value>
+    </data>
+    <data name="RecordsClear" xml:space="preserve">
+        <value>清除紀錄</value>
+    </data>
+    <data name="RecordsClearConfirm" xml:space="preserve">
+        <value>要刪除全部盯人紀錄嗎？刪除後無法復原。</value>
+    </data>
+    <data name="RecordsClearYes" xml:space="preserve">
+        <value>刪除</value>
+    </data>
+    <data name="RecordsClearNo" xml:space="preserve">
+        <value>取消</value>
+    </data>
+    <data name="RecordsSummary" xml:space="preserve">
+        <value>顯示 {0} 位（共 {1} 位玩家）</value>
+    </data>
+    <data name="RecordsColumnName" xml:space="preserve">
+        <value>名字</value>
+    </data>
+    <data name="RecordsColumnWorld" xml:space="preserve">
+        <value>原始伺服器</value>
+    </data>
+    <data name="RecordsColumnCount" xml:space="preserve">
+        <value>次數</value>
+    </data>
+    <data name="RecordsColumnLast" xml:space="preserve">
+        <value>最近一次</value>
+    </data>
+    <data name="RecordsColumnPlace" xml:space="preserve">
+        <value>最近地點</value>
+    </data>
+    <data name="RecordsColumnDuration" xml:space="preserve">
+        <value>累計時間</value>
+    </data>
+    <data name="RecordsTooltipCount" xml:space="preserve">
+        <value>盯過你 {0} 次</value>
+    </data>
+    <data name="RecordsTooltipFirst" xml:space="preserve">
+        <value>第一次：{0}</value>
+    </data>
+    <data name="RecordsTooltipLast" xml:space="preserve">
+        <value>最近一次：{0}（{1}）</value>
+    </data>
+    <data name="RecordsTooltipDuration" xml:space="preserve">
+        <value>累計盯著你的時間：{0}</value>
+    </data>
 </root>

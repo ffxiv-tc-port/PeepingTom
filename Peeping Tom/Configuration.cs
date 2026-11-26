@@ -58,6 +58,15 @@ namespace PeepingTom {
         /// </remarks>
         public bool TataruPraiseOnTarget { get; set; } = true;
 
+        /// <summary>
+        /// 同一位玩家盯你的次數與紀錄（插件設定目錄裡的 target-records.json）。
+        /// 新鍵：舊設定檔缺鍵時保留這裡的初始值＝開。
+        /// </summary>
+        public bool RecordTargeters { get; set; } = true;
+
+        /// <summary>停止盯你之後在這幾秒內又盯回來，算同一次。</summary>
+        public float RecordMergeSeconds { get; set; } = 3f;
+
         public bool LogToChat { get; set; }
         public bool LogToChatWhenClosed { get; set; } = true;
 

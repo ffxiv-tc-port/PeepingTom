@@ -13,15 +13,18 @@ namespace PeepingTom {
         private WindowSystem WindowSystem { get; } = new();
         public MainWindow MainWindow { get; }
         public SettingsWindow SettingsWindow { get; }
+        internal RecordsWindow RecordsWindow { get; }
         
         public PluginUi(Plugin plugin) {
             Plugin = plugin;
             
             MainWindow = new MainWindow(Plugin, this);
             SettingsWindow = new SettingsWindow(Plugin);
+            RecordsWindow = new RecordsWindow(Plugin);
             
             WindowSystem.AddWindow(MainWindow);
             WindowSystem.AddWindow(SettingsWindow);
+            WindowSystem.AddWindow(RecordsWindow);
         }
 
         public void Dispose() {

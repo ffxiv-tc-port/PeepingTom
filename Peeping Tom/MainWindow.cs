@@ -156,7 +156,16 @@ internal class MainWindow : Window {
      private void AddEntry(Targeter targeter, IGameObject? obj, ref bool anyHovered, ImGuiSelectableFlags flags = ImGuiSelectableFlags.None) {
             ImGui.BeginGroup();
 
-            ImGui.Selectable(targeter.Name.TextValue, false, flags);
+            var name = targeter.Name.TextValue;
+            var nameX = ImGui.GetCursorPosX();
+            ImGui.Selectable(name, false, flags);
+
+            TargetRecord? record = null;
+            if (Plugin.Config.RecordTargeters && Plugin.Watcher.Records.Tracker.TryGet(name, targeter.HomeWorldId, out var found)) {
+                record = found;
+                ImGui.SameLine(nameX + ImGui.CalcTextSize(name).X + ImGui.GetStyle().ItemSpacing.X);
+                ImGui.TextDisabled(record.CountLabel);
+            }
 
             if (Plugin.Config.ShowTimestamps) {
                 var time = DateTime.UtcNow - targeter.When >= TimeSpan.FromDays(1)
@@ -181,6 +190,10 @@ internal class MainWindow : Window {
             var hover = ImGui.IsItemHovered(ImGuiHoveredFlags.AllowWhenDisabled);
             var left = hover && ImGui.IsMouseClicked(ImGuiMouseButton.Left);
             var right = hover && ImGui.IsMouseClicked(ImGuiMouseButton.Right);
+
+            if (hover && record != null) {
+                RecordDisplay.DrawTooltip(record);
+            }
 
             obj ??= Service.ObjectTable.FirstOrDefault(a => a.GameObjectId == targeter.GameObjectId);
 
@@ -239,6 +252,15 @@ internal class MainWindow : Window {
          RespectCloseHotkey = Plugin.Config.AllowCloseWithEscape;
         
          TitleBarButtons.Clear();
+         if (Plugin.Config.RecordTargeters) {
+             TitleBarButtons.Add(new TitleBarButton() {
+                 AvailableClickthrough = false,
+                 Click = _ => Ui.RecordsWindow.Toggle(),
+                 Icon = FontAwesomeIcon.History,
+                 ShowTooltip = () => ImGui.SetTooltip(Language.RecordsOpen),
+             });
+         }
+
          if (Plugin.Config.ShowSettingsButton) {
              TitleBarButtons.Add(new TitleBarButton() {
                  AvailableClickthrough = false,
